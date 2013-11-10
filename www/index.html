@@ -27,16 +27,31 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+            <h1>Foto rapport</h1>
+
+            <script>
+                
+                 function onSuccess(imageData) {
+                    // Do stuff with the image!
+                    }
+
+                    function onFail(message) {
+                        alert('Failed to get the picture: ' + message);
+                    }
+
+                    var cameraPopoverHandle = navigator.camera.getPicture(onSuccess, onFail,
+                        { destinationType: Camera.DestinationType.FILE_URI,
+                          sourceType: Camera.PictureSourceType.PHOTOLIBRARY });
+
+                    // Reposition the popover if the orientation changes.
+                    window.onorientationchange = function() {
+                        var cameraPopoverOptions = new CameraPopoverOptions(0, 0, 100, 100, 0);
+                        cameraPopoverHandle.setPosition(cameraPopoverOptions);
+                    }
+ 
+            </script>
         </div>
         <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+
     </body>
 </html>
